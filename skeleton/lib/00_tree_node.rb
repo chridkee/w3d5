@@ -8,15 +8,17 @@ class PolyTreeNode
     end
 
     def parent=(parent_node)
-        if parent_node == nil
-            return nil 
-        else
+        # if self.parent != nil
+            @parent.children.delete(self) # remove from parent's children array
+           
+            @parent = nil # set parent to nil
+        # else
             unique = parent_node.children.all? {|el| el.value != self.value}
             if unique 
                 parent_node.children << self 
             end
             @parent = parent_node
-        end
+        # end
     end 
       
     def inspect 
@@ -31,3 +33,6 @@ end
         # if !@children.include?(self)
         #     parent.children << self
         # end
+
+        # a self: children: [], parent: b
+        # b parent: children[a], parent
