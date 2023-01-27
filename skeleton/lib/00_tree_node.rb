@@ -50,6 +50,24 @@ class PolyTreeNode
         child_node.parent.children.delete(child_node)
     end
     
+    #DFS
+
+    def dfs(target)
+        stack = []
+        stack << self
+        #return self if stack.first.value == target
+
+        node = stack.pop
+        return node if node.value == target
+
+        node.children.each do |child|
+            result = dfs(child)
+            return child if result != nil
+            stack.pop(child)
+        end
+        nil
+    end
+    
 end
 
   # each do |el|
