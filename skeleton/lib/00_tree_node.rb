@@ -52,7 +52,10 @@ class PolyTreeNode
     
     #DFS
 
+    require "byebug"
+
     def dfs(target)
+        debugger
         stack = []
         stack << self
         #return self if stack.first.value == target
@@ -61,9 +64,10 @@ class PolyTreeNode
         return node if node.value == target
 
         node.children.each do |child|
-            result = dfs(child)
+            stack << child
+            result = child.dfs(target)
             return child if result != nil
-            stack.pop(child)
+            stack.pop(target)
         end
         nil
     end
